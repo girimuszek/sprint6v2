@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>BMI Calculator</title>
+</head>
+
+<body>
+	<h1>Body Mass Index (BMI) Calculator</h1>
+	<h3>Enter a height and weight and press the button to calculate BMI.</h3>
+
+	<label>Height (cm):</label>
+	<input type='number' id='heightID' style='text-align: right;' value='168'> cm
+	<br><br>
+
+	<label>Weight (kg):</label>
+	<input type='number' id='weightID' style='text-align: right;' value='70'> kg
+	<br><br>
+
+	<button onclick='calculateBMI()'>Calculate BMI</button>
+	<br><br>
+
+	<label>BMI: </label><input type='text' id='resultBMIID' style='text-align: right;' size='6' disabled>
+	<!-- End of HTML body code. -->
+
+	<script>
+		async function calculateBMI() {
+			// Get data from HTML input fields.
+			const height = document.getElementById('heightID').value;
+			const weight = document.getElementById('weightID').value;
+	
+			const requestHeaders = { 'Content-Type':'application/json' };
+	
+			const requestBody = JSON.stringify({ weightInKilograms:weight, heightInCentimeters:height });
+			console.log('Request JSON: ' + requestBody)
+	
+			// Send request to server.
+			const response = await fetch('/calculate-bmi', { 
+				method:'POST', 
+				headers:requestHeaders, 
+				body:requestBody });
+	
+			// Stores response data.
+			const responseInJSON = await response.json();
+			console.log('Response JSON: ' + responseInJSON);
+	
+			// Parse response JSON, log full bmi, and update result HTML field with rounded BMI.
+			const responseParsed = JSON.parse(responseInJSON)
+			console.log('BMI: ' + responseParsed.bmi);
+			document.getElementById('resultBMIID').value = responseParsed.bmiRounded;
+		}
+	</script>
+</body>
+</html>
