@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta charset="UTF-8">
+	<title>Awesome IQ Test for Average People!</title>
+</head>
+
+<body>
+	<h1>Awesome IQ Test for Average People!</h1>
+	<p>Follow the questions to get your IQ test results. It should equal 100 every time, if it's lower, then you should be concerned.</p>
+
+	<label>Press the answer with the initials "S" and "A"</label><br />
+	<select id="q1">
+		<option value="5">Strongly Agree</option>
+		<option value="4">Agree</option>
+		<option value="3">Neither agree nor disagree</option>
+		<option value="2">Disagree</option>
+		<option value="1">Strongly Disagree</option>
+	</select>
+	<br /><br />
+
+	<label>Press Strongly Agree. Please I beg you.</label><br />
+	<select id="q2">
+		<option value="5">Strongly Agree</option>
+		<option value="4">Agree</option>
+		<option value="3">Neither agree nor disagree</option>
+		<option value="2">Disagree</option>
+		<option value="1">Strongly Disagree</option>
+	</select>
+	<br /><br />
+
+	<label>Press Strongly Agree if you did what I did above</label><br />
+	<select id="q3">
+		<option value="5">Strongly Agree</option>
+		<option value="4">Agree</option>
+		<option value="3">Neither agree nor disagree</option>
+		<option value="2">Disagree</option>
+		<option value="1">Strongly Disagree</option>
+	</select>
+	<br /><br />
+
+	<label>Ok, now press Strongly Agree if you're reading this</label><br />
+	<select id="q4">
+		<option value="5">Strongly Agree</option>
+		<option value="4">Agree</option>
+		<option value="3">Neither agree nor disagree</option>
+		<option value="2">Disagree</option>
+		<option value="1">Strongly Disagree</option>
+	</select>
+	<br /><br />
+
+	<label>Do not press the last 4 options</label><br />
+	<select id="q5">
+		<option value="5">Strongly Agree</option>
+		<option value="4">Agree</option>
+		<option value="3">Neither agree nor disagree</option>
+		<option value="2">Disagree</option>
+		<option value="1">Strongly Disagree</option>
+	</select>
+
+	<br /><br /><br />
+	<button onclick="calculateCompat()">Calculate IQ</button>
+	<p id="compatibility"></p>
+
+<script>
+console.log("Starting Matchmaker Lite...");
+
+function calculateCompat() {
+	console.log("calculateCompatibility()");
+
+	const DESIRED_RESPONSE = [
+		5, 
+        5,
+        5,
+        5,
+        5
+        
+	]
+
+	const MAX_SCORE = 25;
+
+	let question1Response = document.getElementById("q1").selectedOptions[0].value;
+	let question2Response = document.getElementById("q2").selectedOptions[0].value;
+	let question3Response = document.getElementById("q3").selectedOptions[0].value;
+	let question4Response = document.getElementById("q4").selectedOptions[0].value;
+	let question5Response = document.getElementById("q5").selectedOptions[0].value;
+
+	let question1Compat = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+	let question2Compat = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+	let question3Compat = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+    let question4Compat = 5 - Math.abs(question3Response - DESIRED_RESPONSE[3]);
+    let question5Compat = 5 - Math.abs(question3Response - DESIRED_RESPONSE[4]);
+
+
+	let totalCompat= question1Compat + question2Compat + question3Compat + question4Compat + question5Compat;
+
+
+	totalCompat *= 100 / MAX_SCORE;
+	totalCompat = Math.round(totalCompat);
+	console.log("tc="+ totalCompat);
+
+	document.getElementById("compatibility").innerHTML = "Your compatibility is: " + totalCompat;
+}
+
+</script>
+</body>
+</html>
