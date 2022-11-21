@@ -1,16 +1,20 @@
-# BMI Calculator
+CREDITS:
 
-Dependencies: Node.js, express, and body-parser
+ERIC J POGUE
 
-This application demonstrates creating a Node.js based website and implementing an AJAX based 
-web service to calculate BMI on the Node.js server. The AJAX based web service utilizes POST 
-method as well as JSON inputs and outputs.
+Github: https://github.com/EricJPogue
 
-Initial Usage:
-- npm install express
-- npm install body-parser
-- npm start
+KACPER ZALEWSKI
 
-Credits:
-- Matthew Welch
-- Eric Pogue
+
+HOW TO USE:
+
+FIRST METHOD
+
+1. Open the .html file in Google Chrome
+2. follow the directions given by the prompts
+
+SECOND METHOD
+
+1. Click on the link
+2. Follow directions
